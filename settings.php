@@ -52,7 +52,6 @@
 				<Input type = 'Radio' Name ='gender' value= 'female'>Female
 				<br>Birth Date<input type="time" name="date">
 				<br>Email<input type="email" placeholder="Email" name="email" Required>
-				<br>Password<input type="password" placeholder="Password" name="password" Required>
 				<input type="submit" name="savepersonalsubmit" value="Save">
 				<input type="submit" name="cancelpersonalsubmit" value="Cancel">
 			</form>

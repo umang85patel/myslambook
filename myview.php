@@ -39,7 +39,7 @@
 		</a>
 		<a href="">Side View</a>
 		<a href="">Amigos</a>
-		<a href="">Settings</a>
+		<a href="settings.php">Settings</a>
 		<form action="signupsubmit.php" method="post">
 		<input type="submit" name="logoffsubmit" value="Log Off">
 		</form>

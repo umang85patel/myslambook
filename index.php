@@ -30,7 +30,7 @@
 			<br>
 			<Input type = 'Radio' Name ='gender' value= 'male' checked>Male
 			<Input type = 'Radio' Name ='gender' value= 'female'>Female
-			<br>Birth Date<input type="time" name="date">
+			<br>Birth Date<input type="date" name="date">
 			<br>Email<input type="email" placeholder="Email" name="email" Required>
 			<br>Password<input type="password" placeholder="Password" name="password" Required>
 			<br><input type="submit" value="Sign Up" name="submitsignup">
