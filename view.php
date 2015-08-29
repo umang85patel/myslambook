@@ -7,8 +7,8 @@
 	}
 
 	include 'connection.php';
-	$hello=$_SESSION['user'];
-	$query = "SELECT `profilephoto` FROM `slambook`.`userdetails` WHERE `userdetails`.`uname` = '$hello'";
+	$oview=$_SESSION['oview'];
+	$query = "SELECT `profilephoto` FROM `slambook`.`userdetails` WHERE `userdetails`.`uname` = '$oview'";
 	
 	$result=mysqli_query($conn,$query);
 
@@ -17,15 +17,15 @@
 	}
 	else if(mysqli_num_rows($result)==1){
 	    $row = mysqli_fetch_array($result);
-	    $_SESSION['photoname']=$row['profilephoto'];
-	    /*if($_SESSION['photoname']!=null)
+	    //$_SESSION['photoname']=$row['profilephoto'];
+	    if($_SESSION['photoname']!=null)
 	    {
 	    	$_SESSION['photoname']=$row['profilephoto'];
 	    }
 	    else
 	    {
 	    	$_SESSION['photoname']="mpp.jpg";
-	    }*/
+	    }
 	}
 	else{
 	    echo "not found!";
@@ -36,7 +36,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home|Slambook</title>
+	<title>"<?=$_SESSION['oview']?>"|Slambook</title>
 </head>
 <body>
 	<header>

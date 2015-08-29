@@ -43,11 +43,13 @@ include 'connection.php';
 		{
 			echo 'something is empty';
 		}
+
+
 	}
 
 	if(isset($_POST['submitlogin']))
 	{
-		if(!empty($_POST['username']) and  !empty($_POST['password']) )
+		if(!empty($_POST['username']) and !empty($_POST['password']) )
 		{
 			$uname=$_POST['username'];
 			$password=$_POST['password'];
