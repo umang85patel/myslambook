@@ -5,7 +5,7 @@
 	{
 		header("Location: index.php");
 	}
-
+	/*
 	include 'connection.php';
 	$hello=$_SESSION['user'];
 	$query = "SELECT `profilephoto` FROM `slambook`.`userdetails` WHERE `userdetails`.`uname` = '$hello'";
@@ -18,25 +18,26 @@
 	else if(mysqli_num_rows($result)==1){
 	    $row = mysqli_fetch_array($result);
 	    $_SESSION['photoname']=$row['profilephoto'];
-	    /*if($_SESSION['photoname']!=null)
+	    if($_SESSION['photoname']!=null)
 	    {
 	    	$_SESSION['photoname']=$row['profilephoto'];
 	    }
 	    else
 	    {
 	    	$_SESSION['photoname']="mpp.jpg";
-	    }*/
+	    }
 	}
 	else{
 	    echo "not found!";
 	}
+	*/
 ?>
 
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home|Slambook</title>
+	<title>Search Results|Slambook</title>
 </head>
 <body>
 	<header>
@@ -51,21 +52,42 @@
 		<form action="signupsubmit.php" method="post">
 		<input type="submit" name="logoffsubmit" value="Log Off">
 		</form>
-		<form action="signupsubmit.php" method="post">
+		<form>
 		<input type="search" name="search">
 		<input type="submit" name="searchsubmit" value="Search" >
 		</form>
 	<section>
-		<h1>My View</h1>
-		<div id="coverpart" style="width: 100%;height: 100px;margin-top:10px">
-            <img src="">   
-        </div>
-        <div id="photopart" style="width: 100%;height: 50px;margin-top:10px">
-            <img src="<?='uploads/'.$_SESSION['photoname']?>">
-        </div>
-        <a href="">Slams</a>
-		<a href="">Details</a>
-		<a href="">Amigos</a>
+		<h1>
+		<label></label>
+		Search Results for <?= $_SERVER['QUERY_STRING']?></h1>
+		<div>
+			<?php
+				//echo $_SERVER['QUERY_STRING'];
+
+				include 'connection.php';
+				$tempuname=$_SERVER['QUERY_STRING'];
+				$sql = "SELECT id, fname, lname,  profilephoto FROM userdetails WHERE uname='$tempuname'";
+				$result=mysqli_query($conn,$sql);
+
+				if (mysqli_num_rows($result) > 0) {
+				    // output data of each row
+
+					//$row = mysqli_fetch_array($result);
+					//printf ("%s (%s)\n",$row["uname"],$row["fname"]);
+
+				    while($row = mysqli_fetch_array($result)) {
+				        echo "<b>id:</b> " . $row["id"]. " - Name: " . $row["fname"]. " ". $row["lname"]. "<img src="."uploads/".$row["profilephoto"].">" . $row["profilephoto"]. "<br>";
+				    }
+				} else {
+				    echo "No results found for $tempuname";
+				}
+				// Free result set
+				mysqli_free_result($result);
+
+				mysqli_close($conn);
+			?>
+			<?php $result=mysqli_query($conn,$sql);?>
+		</div>
 	</section>
 
 	<footer>

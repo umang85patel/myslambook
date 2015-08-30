@@ -85,4 +85,11 @@ include 'connection.php';
 		$_SESSION["photoname"] = "";
 		header("Location: index.php");
 	}
+
+
+	if(isset($_POST['searchsubmit']))
+	{
+		$tempstr=$_POST['search'];
+		header('Location: search.php?'.$tempstr);
+	}
  ?>
