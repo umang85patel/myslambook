@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php
+  session_start();
+	// Echo session variables that were set on previous page
+	if($_SESSION["user"]==null)
+	{
+		header("Location: index.php");
+	} 
+?>
+  
 <html lang="en">
 <head>
   <title>Aspect Ratio with Preview Pane | Jcrop Demo</title>
@@ -89,9 +97,14 @@
    area based on the size of the thumbnail preview,
    specified here */
 #preview-pane .preview-container {
-  width: 250px;
-  height: 170px;
+  width: 200px;
+  height: 200px;
   overflow: hidden;
+}
+
+.photolarge{
+  max-width:500px;
+  max-height:400px;
 }
 
 </style>
@@ -104,35 +117,20 @@
 <div class="span12">
 <div class="jc-demo-box">
 
+  <form action="upload_photo.php" method="post" enctype="multipart/form-data" target="upload_frame" onsubmit="submit_photo()">
+                <input type="file" name="photo" id="photo" class="file_input">
+                <div id="loading_progress"></div>
+                <input type="submit" value="Upload photo" id="upload_btn">
+  </form>
 
-
-  <img src="demo_files/sago.jpg" id="target" alt="[Jcrop Example]" />
+  <img class="photolarge" src="<?= $_SESSION['cropphoto']?>" id="target" alt="[Jcrop Example]" />
 
   <div id="preview-pane">
     <div class="preview-container">
-      <img src="demo_files/sago.jpg" class="jcrop-preview" alt="Preview" />
+      <img src="<?= $_SESSION['cropphoto']?>" class="jcrop-preview" alt="Preview" />
     </div>
   </div>
 
-  <div class="description">
-  <p>
-    <b>An example implementing a preview pane.</b>
-      Obviously the most visual demo, the preview pane is accomplished
-      entirely outside of Jcrop with a simple jQuery-flavored callback.
-      This type of interface could be useful for creating a thumbnail
-      or avatar. The onChange event handler is used to update the
-      view in the preview pane.
-  </p>
-  </div>
-
-<div class="tapmodo-footer">
-  <a href="http://tapmodo.com" class="tapmodo-logo segment">tapmodo.com</a>
-  <div class="segment"><b>&copy; 2008-2013 Tapmodo Interactive LLC</b><br />
-    Jcrop is free software released under <a href="../MIT-LICENSE.txt">MIT License</a>
-  </div>
-</div>
-
-<div class="clearfix"></div>
 
 </div>
 </div>

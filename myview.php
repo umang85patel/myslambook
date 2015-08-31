@@ -52,8 +52,8 @@
 		<input type="submit" name="logoffsubmit" value="Log Off">
 		</form>
 		<form action="signupsubmit.php" method="post">
-		<input type="search" name="search">
-		<input type="submit" name="searchsubmit" value="Search" >
+			<input type="search" name="search">
+			<input type="submit" name="searchsubmit" value="Search" >
 		</form>
 	<section>
 		<h1>My View</h1>
