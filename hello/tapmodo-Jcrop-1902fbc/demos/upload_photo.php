@@ -11,6 +11,6 @@ if (is_file($photo_src)) {
 	// call the show_popup_crop function in JavaScript to display the crop popup
 	echo '<script type="text/javascript">window.top.window.show_popup_crop("'.$photo_dest.'")</script>';
 	$_SESSION["cropphoto"]=$photo_dest;
-	header("Location: hello.php");
+	header("Location: hello2.php");
 }
 ?>
