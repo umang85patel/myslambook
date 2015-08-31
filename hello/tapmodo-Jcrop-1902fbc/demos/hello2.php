@@ -97,9 +97,14 @@
    area based on the size of the thumbnail preview,
    specified here */
 #preview-pane .preview-container {
-  width: 250px;
-  height: 170px;
+  width: 200px;
+  height: 200px;
   overflow: hidden;
+}
+
+.photolarge{
+  max-width:500px;
+  max-height:400px;
 }
 
 </style>
@@ -118,7 +123,7 @@
                 <input type="submit" value="Upload photo" id="upload_btn">
   </form>
 
-  <img src="<?= $_SESSION['cropphoto']?>" id="target" alt="[Jcrop Example]" />
+  <img class="photolarge" src="<?= $_SESSION['cropphoto']?>" id="target" alt="[Jcrop Example]" />
 
   <div id="preview-pane">
     <div class="preview-container">
