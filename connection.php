@@ -7,7 +7,7 @@
 	
 	if(!$conn=mysqli_connect($host,$user,$password,$db))
 	{
-		echo "unsuccessful";
+		echo "unsuccessful connection";
 	}
 	
 

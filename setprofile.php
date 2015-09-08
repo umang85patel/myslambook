@@ -21,12 +21,12 @@ session_start();
 	{
 		header("Location: index.php");
 	}
-	else if($_SESSION["user"]!=null and $_SESSION["signup"]==null)
-	{
-		header("Location: myview.php");
-	}
+	//else if($_SESSION["user"]!=null and $_SESSION["signup"]==null)
+	//{
+	//	header("Location: myview.php");
+	//}
 
-	include 'connection.php';
+include 'connection.php';
 
 function generateRandomString($length = 20) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -86,7 +86,7 @@ if(isset($_POST['submit']))
 				if(mysqli_query($conn,$sql))
 				{
 					$_SESSION["signup"]=null;
-					header("Location: myview.php");
+					header("Location: setprofile.php");
 					exit();
 				}
 				else
