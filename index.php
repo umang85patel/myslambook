@@ -10,35 +10,83 @@
 <html>
 <head>
 	<title>Home|Slambook</title>
+	<script src="js/bootstrap.min.js"></script>
+  	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>
 <body>
-	<header>
-		<form action="signupsubmit.php" method="post">
-			User Name<input type="text" placeholder="User Name" name="username" Required>
-			<br>Password<input type="password" placeholder="Password" name="password" Required>
-			<br><a href="">forgot password?</a>
-			<br><input type="submit" value="Log In" name="submitlogin">
-		</form>
-	</header>
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">
+						<img alt="Slambook" src="brand.png">
+					</a>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle Navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Slambook</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      	<ul class="nav navbar-nav navbar-right">
+				        <form class="form-inline" action="signupsubmit.php" method="post">
+				        	<a href="">forgot password?</a>
+				        	<div class="form-group">
+				        		<input type="text" class="form-control" placeholder="User Name" name="username" Required>
+								<input type="password" class="form-control" placeholder="Password" name="password" Required>
+				        	</div>
+							<button type="submit" class="btn btn-default" name="submitlogin">Log In</button>
+						</form>
+			      	</ul>
+				</div>
+			</div>
+		</div>
+	</nav>   
 
-	<section>
-		<h1>Sign UP</h1>
+	<br>
+	<br>
+	<br>
+
+	<div class="container-fluid">
 		<form action="signupsubmit.php" method="post">
-			<br>First Name<input type="text" placeholder="First Name" name="firstname" Required>
-			<br>Last Name<input type="text" placeholder="Last Name" name="lastname">
-			<br>User Name<input type="text" placeholder="User Name" name="username" Required>
-			<br>
-			<Input type = 'Radio' Name ='gender' value= 'male' checked>Male
-			<Input type = 'Radio' Name ='gender' value= 'female'>Female
-			<br>Birth Date<input type="date" name="date">
-			<br>Email<input type="email" placeholder="Email" name="email" Required>
-			<br>Password<input type="password" placeholder="Password" name="password" Required>
-			<br><input type="submit" value="Sign Up" name="submitsignup">
+			<div class="form-group col-md-3">
+				  	<input type="text" class="form-control" placeholder="First Name" name="firstname" Required>
+				<br>
+					<input type="text" class="form-control" placeholder="Last Name" name="lastname">
+				<br>
+				  	<input type="text" class="form-control" placeholder="User Name" aria-describedby="basic-addon1" name="username" Required>
+				<div class="radio">
+				    <label>
+				    	<input type="radio" aria-label="Male" value="male" name="gender">
+				    	Male
+				    </label>
+				</div>
+				<div class="radio">  
+				    <label>
+				    	<input type="radio" aria-label="Female" value="female" name="gender">
+				    	Female
+				    </label>
+				</div>
+				  	<input type="date" class="form-control" placeholder="dd/mm/yyyy" name="date" Required>
+				<br>
+				  	<input type="email" class="form-control" placeholder="Email" name="email" Required>
+				<br>
+				  	<input type="password" class="form-control" placeholder="Password" name="password" Required>
+				<br>
+				<div class="col-md-5 col-md-offset-3">
+					<button type="submit" class="form-control btn-info" name="submitsignup">Sign Up</button>
+				</div>
+			</div>
 		</form>
-	</section>
+	</div>
 
 	<footer>
 		&copy;Slambook
 	</footer>
+
+	<script src="js/jquery-2.0.2.min.js" type="text/javascript"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+
 </body>
 </html>

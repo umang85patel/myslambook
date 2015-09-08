@@ -38,60 +38,54 @@
 <html>
 <head>
 	<title>Search Results|Slambook</title>
+	<script src="js/bootstrap.min.js"></script>
+  	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>
 <body>
-	<header>
-		
-	</header>
-		<a href="">
-			<h2>Slambook</h2>
-		</a>
-		<a href="">Side View</a>
-		<a href="">Amigos</a>
-		<a href="settings.php">Settings</a>
-		<form action="signupsubmit.php" method="post">
-		<input type="submit" name="logoffsubmit" value="Log Off">
-		</form>
-		<form>
-		<input type="search" name="search">
-		<input type="submit" name="searchsubmit" value="Search" >
-		</form>
-	<section>
-		<h1>
-		<label></label>
-		Search Results for <?= $_SERVER['QUERY_STRING']?></h1>
-		<div>
-			<?php
-				//echo $_SERVER['QUERY_STRING'];
+	<?php include 'navbar.php'; ?>
+	<div class="container-fluid">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4>Search Results for '<?= $_SERVER['QUERY_STRING']?>'</h4>
+			</div>
+			<div class="panel-body">
+					<ul class="list-group">
+					<?php
+						//echo $_SERVER['QUERY_STRING'];
 
-				include 'connection.php';
-				$tempuname=$_SERVER['QUERY_STRING'];
-				$sql = "SELECT id, fname, lname,  profilephoto FROM userdetails WHERE uname='$tempuname'";
-				$result=mysqli_query($conn,$sql);
+						include 'connection.php';
+						$tempuname=$_SERVER['QUERY_STRING'];
+						$sql = "SELECT id, uname, fname, lname,  profilephoto FROM userdetails WHERE uname LIKE '%$tempuname%'";
+						$result=mysqli_query($conn,$sql);
 
-				if (mysqli_num_rows($result) > 0) {
-				    // output data of each row
+						if (mysqli_num_rows($result) > 0) {
+						    // output data of each row
 
-					//$row = mysqli_fetch_array($result);
-					//printf ("%s (%s)\n",$row["uname"],$row["fname"]);
+							//$row = mysqli_fetch_array($result);
+							//printf ("%s (%s)\n",$row["uname"],$row["fname"]);
 
-				    while($row = mysqli_fetch_array($result)) {
-				        echo "<b>id:</b> " . $row["id"]. " - Name: " . $row["fname"]. " ". $row["lname"]. "<img src="."uploads/".$row["profilephoto"].">" . $row["profilephoto"]. "<br>";
-				    }
-				} else {
-				    echo "No results found for $tempuname";
-				}
-				// Free result set
-				mysqli_free_result($result);
+						    while($row = mysqli_fetch_array($result)) {
+						        echo '<li class="list-group-item"><ul class="media-list"><li class="media"><div class="media-left"><a href="http://localhost/myslambook/'.$row["uname"].'"><img class="media-object img-circle img-thumbnail" src="uploads/'.$row["profilephoto"].'"></a></div><div class="media-body"><a href="http://localhost/myslambook/'.$row["uname"].'"><h3 class="media-heading">'.$row["fname"].' '.$row["lname"].'</h3></a><h5>'.$row["id"].'</h5><h5><b>'.$row["profilephoto"].'</b></h5><button class="btn btn-info">Add as Amigo</button></div></li></ul></li>';
 
-				mysqli_close($conn);
-			?>
-			<?php $result=mysqli_query($conn,$sql);?>
+						    	
+						    }
+						} else {
+						    echo "No results found for $tempuname";
+						}
+						// Free result set
+						mysqli_free_result($result);
+
+						mysqli_close($conn);
+					?>
+					</ul>
+			</div>
 		</div>
-	</section>
+		<footer>
+			<small>&copy;Slambook</small>
+		</footer>
+	</div>
 
-	<footer>
-		&copy;Slambook
-	</footer>
+	<script src="js/jquery-2.0.2.min.js" type="text/javascript"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>

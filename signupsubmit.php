@@ -4,6 +4,7 @@
 	session_start();
 
 include 'connection.php';
+
 	if(isset($_POST['submitsignup']))
 	{	
 		if( !empty($_POST['firstname']) and !empty($_POST['username']) and !empty($_POST['email']) and !empty($_POST['password']) and isset($_POST['gender']))
@@ -27,11 +28,14 @@ include 'connection.php';
 
 
 			$sql="INSERT INTO `slambook`.`userdetails` (`uname`, `pwd`, `email`,`gender`,`fname`,`lname`,`profilephoto`) VALUES('$uname','$password','$email','$gender','$fname','$lname','$profilephoto')";
-			if(mysqli_query($conn,$sql))
+			$result=mysqli_query($conn,$sql);
+			if($result)
 			{
+				echo "umng";
 				$_SESSION["user"] = $uname;
 				$_SESSION["signup"] = 'yes';
-				header("Location: setprofile.php");
+				$_SESSION["user_id"]=$row['id'];
+				header("Location: uploadphoto.php");
 				exit();
 			}
 			else
@@ -43,8 +47,6 @@ include 'connection.php';
 		{
 			echo 'something is empty';
 		}
-
-
 	}
 
 	if(isset($_POST['submitlogin']))
@@ -59,6 +61,8 @@ include 'connection.php';
 			{
 				// Set session variables
 				$_SESSION["user"] = $uname;
+				$row = mysqli_fetch_array($result);
+				 $_SESSION["user_id"]=$row['id'];
 				header("Location: myview.php");
 				exit();
 			}
@@ -83,6 +87,7 @@ include 'connection.php';
 		//session_destroy();
 		$_SESSION["user"] = "";
 		$_SESSION["photoname"] = "";
+		$_SESSION['cropphoto'] ="";
 		header("Location: index.php");
 	}
 
@@ -91,5 +96,77 @@ include 'connection.php';
 	{
 		$tempstr=$_POST['search'];
 		header('Location: search.php?'.$tempstr);
+	}
+
+	if(isset($_POST['viewsubmit']))
+	{
+		
+		header('Location: view.php?');
+	}
+
+	
+	//this code is for add as a amigo
+   	if(isset($_POST['addfriend']))
+   	{
+   		$friend_id=$_SESSION['friendid'];
+    	$user_id=$_SESSION['user_id'];
+		$sql="INSERT INTO `slambook`.`friends` (`user_id`, `friend_id`) VALUES('$user_id','$friend_id')";
+		$result=mysqli_query($conn,$sql);
+		if($result)
+		{
+			echo "<br><br>friend has been added";
+			// $_SESSION["user"] = $uname;
+			// $_SESSION["signup"] = 'yes';
+			$headchange='Location: http://localhost/myslambook/'.$_SESSION['friend'];
+			header($headchange);
+			exit();
+		}
+		else
+		{
+			echo 'cant be added';
+		}
+	}
+
+	//this code is for remove friend
+	if(isset($_POST['removefriend']))
+   	{
+   		$friend_id=$_SESSION['friendid'];
+    	$user_id=$_SESSION['user_id'];
+	 	$sql="DELETE from `slambook`.`friends` where `user_id`='$user_id' and `friend_id`='$friend_id'";
+			
+			if($result=mysqli_query($conn,$sql))
+			{
+				
+				$headchange='Location: http://localhost/myslambook/'.$_SESSION['friend'];
+				header($headchange);
+				exit();
+			}
+			else
+			{
+				echo 'cant be added';
+			}
+	}
+
+	//this is ffor the slam submit buuton 
+	if(isset($_POST['submitslam']) and !empty($_POST['slamcontent']))
+   	{
+   		$friend_id=$_SESSION['friendid'];
+    	$user_id=$_SESSION['user_id'];
+    	$slamcontent=$_POST['slamcontent'];
+		$sql="INSERT INTO `slam`(`rcv`, `snd`,`content`) VALUES ('$friend_id','$user_id','$slamcontent')";
+		echo $result=mysqli_query($conn,$sql);
+		if($result)
+		{
+			echo "<br><br>slam has been added";
+			// $_SESSION["user"] = $uname;
+			// $_SESSION["signup"] = 'yes';
+			$headchange='Location: http://localhost/myslambook/'.$_SESSION['friend'];
+			header($headchange);
+			exit();
+		}
+		else
+		{
+			echo 'slam cant be added';
+		}
 	}
  ?>

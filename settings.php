@@ -54,6 +54,7 @@
 				<br>Email<input type="email" placeholder="Email" name="email" Required>
 				<input type="submit" name="savepersonalsubmit" value="Save">
 				<input type="submit" name="cancelpersonalsubmit" value="Cancel">
+				<a href="uploadphoto.php">Change Profile Photo</a>
 			</form>
 
 		<a href=""><h3>Security</h3></a>
