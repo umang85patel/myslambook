@@ -1,9 +1,9 @@
 <?php 
 	
-	$db="slambook";
-	$user="root";
-	$password="";
-	$host="localhost";
+	$db="u724522403_slam";
+	$user="u724522403_book";
+	$password="@2Mukesh";
+	$host="mysql.hostinger.in";
 	
 	if(!$conn=mysqli_connect($host,$user,$password,$db))
 	{
