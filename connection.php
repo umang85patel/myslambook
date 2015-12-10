@@ -1,9 +1,9 @@
 <?php 
 	
-	$db="u724522403_slam";
-	$user="u724522403_book";
-	$password="@2Mukesh";
-	$host="mysql.hostinger.in";
+	$db="slambook";
+	$user="bbe7139df82ec6";
+	$password="fe0583d5";
+	$host="ap-cdbr-azure-southeast-a.cloudapp.net";
 	
 	if(!$conn=mysqli_connect($host,$user,$password,$db))
 	{
